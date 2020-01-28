@@ -1,7 +1,7 @@
 // Global Variables
 let playerScore = 0;
 let computerScore = 0;
-let numberOfRounds = Number(prompt("How many rounds do you want to play?"));
+// let numberOfRounds = Number(prompt("How many rounds do you want to play?"));
 let gameRound = 0;
 
 
@@ -9,6 +9,9 @@ let gameRound = 0;
 const buttons = document.querySelectorAll("button");
 const computer = document.getElementById("computerChoice");
 const roundWinner = document.getElementById("eachRound");
+const displayFinalScore = document.getElementById("finalScore");
+const playAgain = document.getElementById("play-again");
+
 
 //Event Listeners
 
@@ -16,6 +19,7 @@ buttons.forEach(button => {
   button.addEventListener("click", singleRound);
 });
 
+playAgain.addEventListener('click',newRound);
 
 //Functions
 
@@ -29,20 +33,14 @@ function singleRound(event) {
   roundWinner.textContent = " Your score is " + playerScore + " and the computer score is " + computerScore;
   console.log(gameRound++);
 
-  if (gameRound === numberOfRounds) {
+  if (gameRound === 5) {
     buttons.forEach(button => {
       button.removeEventListener("click", singleRound);
     });
     roundWinner.textContent = "This round is over!!!"
   }
+  
 }
-
-// if(playerScore > computerScore){
-//   roundWinner.textContent = "Hurray!!!,You won"
-// } else {
-//   roundWinner.textContent = "The computer Won...Better luck next time!!!"
-// }
-
 
 function computerPlay() {
   let computerSelection = Math.floor(Math.random() * 3) + 1;
@@ -94,9 +92,33 @@ function updateScore(result, points) {
   }
 }
 
+function displayScore () {
+if(playerScore > computerScore){
+  return roundWinner.textContent = "Hurray!!!,You won"
+} else if (computerScore > playerScore) {
+  return roundWinner.textContent = "The computer Won...Better luck next time!!!"
+} else {
+  return "It's a draw"
+}
+}
+
+function clearScore () {
+  playerScore = 0;
+  computerScore = 0;
+}
+
+function newRound () {
+  clearScore();
+  gameRound = 0;
+  roundWinner.textContent = "";
+  computer.textContent = ""
+  buttons.forEach(button => {
+    button.addEventListener("click", singleRound);
+  });
+}
 
 singleRound;
-
+displayScore()
 
 
 

@@ -17,7 +17,7 @@ body{
 }
 
 
-button{
+button, #play-again{
     text-align: center;
     width: 15.6rem;
     height: 2.6rem;
@@ -28,4 +28,8 @@ button{
     text-decoration: none;
     border-radius: 5px;
     font-family: 'Lobster', cursive;
+}
+
+#play-again{
+    background-color: #46c3db;
 }
