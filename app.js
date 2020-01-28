@@ -29,11 +29,12 @@ function singleRound(event) {
   const computerSelection = computerPlay();
   var result = compareGuesses(playerSelection, computerSelection);
   updateScore(result,2);
-  computer.textContent = "The computer throws " + computerSelection;
+  computer.textContent = "You choose " +  playerSelection +  " and the computer choose " + computerSelection;
   roundWinner.textContent = " Your score is " + playerScore + " and the computer score is " + computerScore;
   console.log(gameRound++);
 
   if (gameRound === 5) {
+    displayScore();
     buttons.forEach(button => {
       button.removeEventListener("click", singleRound);
     });
@@ -94,9 +95,9 @@ function updateScore(result, points) {
 
 function displayScore () {
 if(playerScore > computerScore){
-  return roundWinner.textContent = "Hurray!!!,You won"
+  return displayFinalScore.textContent = "Hurray!!!,You won"
 } else if (computerScore > playerScore) {
-  return roundWinner.textContent = "The computer Won...Better luck next time!!!"
+  return displayFinalScore.textContent = "The computer Won...Better luck next time!!!"
 } else {
   return "It's a draw"
 }
@@ -111,14 +112,15 @@ function newRound () {
   clearScore();
   gameRound = 0;
   roundWinner.textContent = "";
-  computer.textContent = ""
+  computer.textContent = "";
+  displayFinalScore.textContent = ""
   buttons.forEach(button => {
     button.addEventListener("click", singleRound);
   });
 }
 
 singleRound;
-displayScore()
+
 
 
 
